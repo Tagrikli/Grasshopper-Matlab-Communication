@@ -18,7 +18,11 @@ class MatlabAdapter:
         self.fis = self.engine.readfis(fis_file)
 
     def evalFis(self,inps):
-        return self.engine.evalfis(self.fis,inps)
+        inps_int = []
+        for inp in inps:
+            inps_int.append(float(inp))
+
+        return self.engine.evalfis(self.fis,matlab.double(inps))
 
     def __del__(self):
         self.engine.quit()

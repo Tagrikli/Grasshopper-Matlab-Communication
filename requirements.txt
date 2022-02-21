@@ -1,2 +1,8 @@
-flask
-ghhops-server
+click==8.0.4
+Flask==2.0.3
+ghhops_server==1.4.1
+itsdangerous==2.1.0
+Jinja2==3.0.3
+MarkupSafe==2.1.0
+rhino3dm==7.11.1
+Werkzeug==2.0.3

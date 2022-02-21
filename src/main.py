@@ -1,18 +1,25 @@
 from flask import Flask
+import logging
 import ghhops_server as hs
 import rhino3dm
 from matlab_adapter import MatlabAdapter
+from os import path
+icon_path = path.join(path.dirname(__file__),'icon.png')
 
 app = Flask(__name__)
+app.logger.disabled = True
+logging.getLogger('werkzeug').disabled = True
+
 hops = hs.Hops(app)
 matlab_adapter = MatlabAdapter()
 matlab_adapter.loadFis()
 
+
 @hops.component(
     "/matlab_fis",
-    name="Matlab FIS calculator",
-    description="Evaluates the FIS function in matlab and returns the result.",
-    icon="../fis_logo.png",
+    name="Matlab FIS Calculator",
+    description="Runs the FIS function in matlab and returns the result.",
+    icon=icon_path,
     inputs=[
         hs.HopsNumber("Extrude", "Extrude", "Extrude variable"),
         hs.HopsNumber("Color", "Color", "Color variable"),

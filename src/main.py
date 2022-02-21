@@ -11,9 +11,9 @@ app.logger.disabled = True
 logging.getLogger('werkzeug').disabled = True
 
 hops = hs.Hops(app)
+
 matlab_adapter = MatlabAdapter()
 matlab_adapter.loadFis()
-
 
 @hops.component(
     "/matlab/fis/1",

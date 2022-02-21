@@ -1,5 +1,5 @@
 import matlab.engine
-import os
+from os import listdir, path
 
 class MatlabAdapter:
     def __init__(self):
@@ -8,12 +8,13 @@ class MatlabAdapter:
 
     @classmethod
     def findFis(cls):
-        for file in os.listdir('.'):
+        for file in listdir(path.dirname(__file__)):
             if file.endswith('.fis'):
-                return os.path.abspath(file)
+                return path.abspath(file)
 
     def loadFis(self):
         fis_file = MatlabAdapter.findFis()
+        print(fis_file)
         self.fis = self.engine.readfis(fis_file)
 
     def evalFis(self,inps):

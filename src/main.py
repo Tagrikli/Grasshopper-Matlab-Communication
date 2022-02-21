@@ -16,7 +16,7 @@ matlab_adapter.loadFis()
 
 
 @hops.component(
-    "/matlab_fis",
+    "/matlab/fis/1",
     name="Matlab FIS Calculator",
     description="Runs the FIS function in matlab and returns the result.",
     icon=icon_path,
@@ -27,7 +27,7 @@ matlab_adapter.loadFis()
         hs.HopsNumber("Isolation", "Isolation", "Isolation variable"),
     ],
     outputs=[
-        hs.HopsNumber("Output", "Output", "Output from the FIS")
+        hs.HopsNumber("FIS Output", "FIS Output", "Output from the FIS")
     ]
 )
 def calculator(extrude, color, shape, isolation):

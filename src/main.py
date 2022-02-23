@@ -4,6 +4,7 @@ import ghhops_server as hs
 import rhino3dm
 from matlab_adapter import MatlabAdapter
 from os import path
+
 icon_path = path.join(path.dirname(__file__),'icon.png')
 
 app = Flask(__name__)
@@ -13,7 +14,10 @@ logging.getLogger('werkzeug').disabled = True
 hops = hs.Hops(app)
 
 matlab_adapter = MatlabAdapter()
+print('Matlab adapter loaded...')
+
 matlab_adapter.loadFis()
+print('FIS file loaded')
 
 @hops.component(
     "/matlab/fis/1",

@@ -1,9 +1,14 @@
-import matlab.engine
+try:
+    import matlab.engine
+except ImportError:
+    print('Please install matlab.engine')
+    #exit(1)
+
 from os import listdir, path
 
 class MatlabAdapter:
     def __init__(self):
-        self.engine = matlab.engine.start_matlab()
+        #self.engine = matlab.engine.start_matlab()
         self.fis = None
 
     @classmethod
@@ -11,18 +16,20 @@ class MatlabAdapter:
         for file in listdir(path.dirname(__file__)):
             if file.endswith('.fis'):
                 return path.abspath(file)
+            raise Exception('Please place a FIS file in src folder.')
 
     def loadFis(self):
         fis_file = MatlabAdapter.findFis()
         print(fis_file)
-        self.fis = self.engine.readfis(fis_file)
+        #self.fis = self.engine.readfis(fis_file)
 
-    def evalFis(self,inps):
+    def evalFis(self, inps):
         inps_int = []
         for inp in inps:
             inps_int.append(float(inp))
 
-        return self.engine.evalfis(self.fis,matlab.double(inps))
+        return #self.engine.evalfis(self.fis, matlab.double(inps))
 
     def __del__(self):
-        self.engine.quit()
+        #self.engine.quit()
+        pass
